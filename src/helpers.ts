@@ -1,15 +1,5 @@
 import { UriTypes } from './types.js'
 
-/**
- * Add increment to filename for uniqueness
- * @param name filename
- * @returns
- */
-export function incrementFilename(name: string): string {
-    const n = Number.parseInt(/\(([0-9]*)\)$/gm.exec(name)?.[1] ?? '1')
-    return n === 1 ? `${name} (2)` : name.replace(/\(([0-9]*)\)$/gm, `(${n + 1})`)
-}
-
 export const joinUrls = (base: string, url: string) => {
     return new URL(url, base).href
 }
@@ -31,13 +21,6 @@ export function timeoutPromise<T>(ms: number, promise: Promise<T>, timeoutCallba
             }
         )
     })
-}
-
-export function pick(o: any, ...fields: string[]) {
-    return fields.reduce((a, x) => {
-        if (o.hasOwnProperty(x)) a[x] = o[x]
-        return a
-    }, {})
 }
 
 /**
@@ -194,36 +177,4 @@ export class NotImplementedError extends Error {
     constructor() {
         super('The method or operation is not implemented.')
     }
-}
-
-// export async function fetchWithTimeout(resource, options) {
-//     const { timeout = 8000 } = options
-
-//     const controller = new AbortController()
-//     const id = setTimeout(() => controller.abort(), timeout)
-
-//     try {
-//         const response = await fetch(resource, {
-//             ...options,
-//             signal: controller.signal,
-//         })
-//         console.log('response', response)
-//         clearTimeout(id)
-
-//         return response
-//     } catch (err) {
-//         if (err.name === 'AbortError') {
-//             throw Error('Request timeout exceeded')
-//         } else {
-//             throw err
-//         }
-//     }
-// }
-
-export function generateGuid() {
-    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        const r = (Math.random() * 16) | 0,
-            v = c == 'x' ? r : (r & 0x3) | 0x8
-        return v.toString(16)
-    })
 }

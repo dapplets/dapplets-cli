@@ -15,6 +15,9 @@ program
         new Option('-k, --eth-private-key <type>', 'Ethereum private key').env('ETH_PRIVATE_KEY')
     )
     .addOption(new Option('-r, --target-registry <type>', 'Target registry').env('TARGET_REGISTRY'))
+    .addOption(
+        new Option('-i, --ipfs-gateway-url <type>', 'Ipfs gateway URL').env('IPFS_GATEWAY_URL')
+    )
     .option('-I, --ipfs', 'save module to IPFS')
     .option('-b, --module-branch', 'Module branch to deploy', 'default')
 
@@ -26,7 +29,7 @@ program
     )
     .argument('<module-name>', 'Module name to deploy')
     .action(async (moduleName, options) => {
-        const { ethPrivateKey, targetRegistry, ipfs, moduleBranch } = program.opts()
+        const { ethPrivateKey, targetRegistry, ipfsGatewayUrl, ipfs, moduleBranch } = program.opts()
         const { devServerUrl } = options
         if (!ethPrivateKey) return console.error('Ethereum private key must be specified!') // ToDo: check!
         if (!devServerUrl) return console.error('Developer server URL must be specified!')
@@ -36,6 +39,7 @@ program
             ethPrivateKey,
             devServerUrl,
             targetRegistry,
+            ipfsGatewayUrl,
             ipfs,
             moduleBranch
         )

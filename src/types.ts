@@ -21,38 +21,10 @@ export type StorageRef = {
     uris: string[]
 }
 
-export enum Environments {
+enum Environments {
     Dev = 'dev',
     Test = 'test',
     Main = 'main',
-}
-
-export enum DefaultSigners {
-    EXTENSION = 'extension',
-}
-
-export enum ChainTypes {
-    ETHEREUM_GOERLI = 'ethereum/goerli',
-    // ETHEREUM_XDAI = 'ethereum/xdai',
-    // NEAR_TESTNET = 'near/testnet',
-    // NEAR_MAINNET = 'near/mainnet',
-}
-
-export enum WalletTypes {
-    WALLETCONNECT = 'walletconnect',
-    METAMASK = 'metamask',
-    NEAR = 'near',
-    DAPPLETS = 'dapplets',
-}
-
-export type WalletInfo = {
-    compatible: boolean
-    protocolVersion: string
-    engineVersion: string
-    device: {
-        manufacturer: string
-        model: string
-    }
 }
 
 export enum StorageTypes {
@@ -117,16 +89,4 @@ export class VersionInfo extends Base {
     extensionVersion?: string = null
     createdAt?: string = null
     actions?: string = null
-}
-
-export type EthereumNetwrokConfig = {
-    networkId: string
-    chainId: number
-    nodeUrl: string
-    explorerUrl?: string
-}
-
-export type DappletRuntimeResult = {
-    isActionHandler: boolean
-    isHomeHandler: boolean
 }

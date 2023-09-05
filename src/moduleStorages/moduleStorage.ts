@@ -1,28 +1,15 @@
 import { ethers } from 'ethers'
 import { Tar } from '../common/tar.js'
 import { StorageRef, StorageTypes } from '../types.js'
-// import FileBrowserStorage from '../browserStorages/fileBrowserStorage'
-// import File from '../common/file.js'
-import GlobalConfigService from '../services/globalConfigService.js'
 import { CentralizedModuleStorage } from './centralizedModuleStorage.js'
 import { HttpModuleStorage } from './httpModuleStorage.js'
 import { IpfsModuleStorage } from './ipfsModuleStorage.js'
 import { Storage } from './storage.js'
-// import { SwarmModuleStorage } from './swarmModuleStorage'
 
 class StorageAggregator {
-    // private _fileBrowserStorage = new FileBrowserStorage()
-
-    constructor(private _globalConfigService: GlobalConfigService) {}
+    constructor(private _ipfsGatewayUrl: string) {}
 
     async getResource(hashUris: StorageRef): Promise<ArrayBuffer> {
-        // if (hashUris.hash) {
-        //     const cachedFile = await this._fileBrowserStorage.getById(hashUris.hash)
-        //     if (cachedFile) {
-        //         return cachedFile.getData()
-        //     }
-        // }
-
         const fetchController = new AbortController()
         const buffers = []
 
@@ -64,15 +51,6 @@ class StorageAggregator {
         try {
             const buffer = await Promise.any(buffers)
             fetchController.abort()
-
-            // Cache to the browser storage
-            // if (hashUris.hash) {
-            //     const file = new File()
-            //     file.id = hashUris.hash
-            //     file.setData(buffer)
-            //     await this._fileBrowserStorage.create(file)
-            // }
-
             return buffer
         } catch (err) {
             console.error(err)
@@ -158,8 +136,7 @@ class StorageAggregator {
             //     const swarmPostageStampId = await this._globalConfigService.getSwarmPostageStampId()
             //     return new SwarmModuleStorage({ swarmGatewayUrl, swarmPostageStampId })
             case 'ipfs':
-                const ipfsGatewayUrl = await this._globalConfigService.getIpfsGateway()
-                return new IpfsModuleStorage({ ipfsGatewayUrl })
+                return new IpfsModuleStorage({ ipfsGatewayUrl: this._ipfsGatewayUrl })
             default:
                 throw new Error('Unsupported protocol')
         }
@@ -173,8 +150,7 @@ class StorageAggregator {
             //     return new SwarmModuleStorage({ swarmGatewayUrl, swarmPostageStampId })
 
             case StorageTypes.Ipfs:
-                const ipfsGatewayUrl = await this._globalConfigService.getIpfsGateway()
-                return new IpfsModuleStorage({ ipfsGatewayUrl })
+                return new IpfsModuleStorage({ ipfsGatewayUrl: this._ipfsGatewayUrl })
 
             default:
                 throw new Error('Unsupported storage type')

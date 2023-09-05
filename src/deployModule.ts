@@ -6,11 +6,9 @@ import { ModuleInfo, ModuleTypes, StorageTypes, VersionInfo, UriTypes } from './
 import { Registry } from './registries/registry.js'
 import { DevRegistry } from './registries/devRegistry.js'
 import { EthRegistry } from './registries/ethRegistry.js'
-import GlobalConfigService from './services/globalConfigService.js'
 import StorageAggregator from './moduleStorages/moduleStorage.js'
 
-const globalConfigService = new GlobalConfigService()
-const storageAggregator = new StorageAggregator(globalConfigService)
+let storageAggregator: StorageAggregator
 
 type TDeployedModuleInfo = {
     scriptUrl?: string
@@ -24,9 +22,11 @@ const deployModule = async (
     ethPrivateKey: string,
     devServerUrl: string,
     targetRegistryUrl: string,
+    ipfsGatewayUrl: string,
     ipfs: boolean,
     moduleBranch: string
 ): Promise<TDeployedModuleInfo> => {
+    storageAggregator = new StorageAggregator(ipfsGatewayUrl)
     const targetStorages: StorageTypes[] = []
     if (ipfs) targetStorages.push(StorageTypes.Ipfs)
     // ToDo: Add Swarm
