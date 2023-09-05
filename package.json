@@ -1,0 +1,35 @@
+{
+    "name": "dapplets-cli",
+    "version": "0.1.0",
+    "description": "Dapplets CLI utility.",
+    "bin": "bin/dapplets.js",
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "dapplet",
+        "dapplets",
+        "augmentation"
+    ],
+    "author": "Dapplets Project",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^20.5.7",
+        "@types/semver": "^7.5.1",
+        "jszip": "^3.10.1",
+        "semver": "^7.5.4",
+        "typescript": "^5.2.2"
+    },
+    "dependencies": {
+        "commander": "^11.0.0",
+        "dotenv": "^16.3.1",
+        "ethereum-private-key-to-public-key": "^0.0.5",
+        "ethereum-public-key-to-address": "^0.0.5",
+        "ethers": "^5.7.2",
+        "node-fetch": "^3.3.2"
+    }
+}
