@@ -36,6 +36,11 @@ const deployModule = async (
             ethPrivateKey
         )
         const mi = await devRegistry.getModuleInfoByName(moduleName)
+        if (!mi) {
+            throw new Error(
+                'The selected developer server does not have a module with that name. Check if the developer server has started and if its name is correct.'
+            )
+        }
         const versionNumbers = await devRegistry.getVersionNumbers(moduleName, moduleBranch)
         const vi = await devRegistry.getVersionInfo(moduleName, moduleBranch, versionNumbers[0])
 

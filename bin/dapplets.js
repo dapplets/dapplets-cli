@@ -51,7 +51,11 @@ program
         console.log(
             'Transaction on Etherscan: https://goerli.etherscan.io/tx/' + deployedModuleInfo.txHash
         ) // ToDo: here is a hardcode for Ethereum testnet registry type
-        if (deployedModuleInfo.scriptUrl) console.log('Script URL:', deployedModuleInfo.scriptUrl)
+        if (deployedModuleInfo.scriptUrl)
+            console.log(
+                'IPFS URL:',
+                new URL('/ipfs/' + deployedModuleInfo.scriptUrl.split('//')[1], ipfsGatewayUrl).href
+            )
     })
 
 program.parse(process.argv)
