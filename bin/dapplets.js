@@ -12,11 +12,11 @@ program
     .description(pkg.description)
     .version(pkg.version)
     .addOption(
-        new Option('-k, --eth-private-key <type>', 'Ethereum private key').env('ETH_PRIVATE_KEY')
+        new Option('-k, --eth-private-key <key>', 'Ethereum private key').env('ETH_PRIVATE_KEY')
     )
-    .addOption(new Option('-r, --target-registry <type>', 'Target registry').env('TARGET_REGISTRY'))
+    .addOption(new Option('-r, --target-registry <url>', 'Target registry').env('TARGET_REGISTRY'))
     .addOption(
-        new Option('-i, --ipfs-gateway-url <type>', 'Ipfs gateway URL').env('IPFS_GATEWAY_URL')
+        new Option('-i, --ipfs-gateway-url <url>', 'Ipfs gateway URL').env('IPFS_GATEWAY_URL')
     )
     .option('-I, --ipfs', 'save module to IPFS')
     .option('-b, --module-branch', 'Module branch to deploy', 'default')
@@ -25,7 +25,7 @@ program
     .command('deploy')
     .description('Deploy module: FEATURE, CONFIG, and INTERFACE.')
     .addOption(
-        new Option('-d, --dev-server-url <type>', 'Developer server URL').env('DEV_SERVER_URL')
+        new Option('-d, --dev-server-url <url>', 'Developer server URL').env('DEV_SERVER_URL')
     )
     .argument('<module-name>', 'Module name to deploy')
     .action(async (moduleName, options) => {
