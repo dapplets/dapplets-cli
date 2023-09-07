@@ -1,8 +1,10 @@
 {
     "name": "@dapplets/cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Dapplets CLI utility.",
-    "bin": "bin/dapplets.js",
+    "bin": {
+        "dapplets": "./bin/dapplets.js"
+    },
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
     "type": "module",
