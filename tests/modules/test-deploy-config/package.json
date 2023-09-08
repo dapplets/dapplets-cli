@@ -1,0 +1,14 @@
+{
+  "name": "test-deploy-config",
+  "version": "0.1.3",
+  "description": "Test Config",
+  "main": "index.json",
+  "scripts": {
+    "start": "serve -l 8080"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "license": "",
+  "author": "Dapplets Team"
+}

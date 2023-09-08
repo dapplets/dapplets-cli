@@ -1,0 +1,21 @@
+{
+  "name": {
+    "$ref": "package.json#/name"
+  },
+  "branch": "default",
+  "version": {
+    "$ref": "package.json#/version"
+  },
+  "type": "CONFIG",
+  "title": "Test Deploy Config",
+  "description": {
+    "$ref": "package.json#/description"
+  },
+  "main": {
+    "$ref": "package.json#/main"
+  },
+  "contextIds": [
+    "twitter.com"
+  ],
+  "dependencies": {}
+}

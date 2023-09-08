@@ -1,0 +1,29 @@
+{
+  "name": {
+    "$ref": "package.json#/name"
+  },
+  "branch": "default",
+  "version": {
+    "$ref": "package.json#/version"
+  },
+  "type": "FEATURE",
+  "title": "Test Deploy CLI Dapplet",
+  "description": {
+    "$ref": "package.json#/description"
+  },
+  "main": {
+    "$ref": "package.json#/main"
+  },
+  "icon": "src/icons/example.png",
+  "contextIds": [
+    "test-deploy-config"
+  ],
+  "config": {
+    "schema": "config/schema.json",
+    "default": "config/default.json"
+  },
+  "overlays": {},
+  "dependencies": {
+    "test-deploy-config": "0.1.1"
+  }
+}

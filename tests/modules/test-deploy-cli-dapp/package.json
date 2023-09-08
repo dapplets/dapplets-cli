@@ -1,0 +1,22 @@
+{
+  "name": "test-deploy-cli-dapp",
+  "version": "0.1.10",
+  "description": "Test dapplet",
+  "main": "",
+  "scripts": {
+    "postinstall": "npm run install:dapplet",
+    "install:dapplet": "cd dapplet && npm i",
+    "start": "cd dapplet && npm start",
+    "start:dapplet": "cd dapplet && npm start",
+    "prettier": "npx prettier --write ."
+  },
+  "cacheDirectories": [
+    "dapplet/node_modules"
+  ],
+  "author": "Test Co",
+  "license": "",
+  "devDependencies": {
+    "concurrently": "^6.5.1",
+    "prettier": "2.2.1"
+  }
+}
