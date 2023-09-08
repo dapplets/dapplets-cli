@@ -1,6 +1,6 @@
 {
     "name": "@dapplets/cli",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "description": "Dapplets CLI utility.",
     "bin": {
         "dapplets": "./bin/dapplets.js"
@@ -8,7 +8,9 @@
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
     "type": "module",
-    "files": ["lib"],
+    "files": [
+        "lib"
+    ],
     "scripts": {
         "build": "tsc",
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -32,5 +34,13 @@
         "dotenv": "^16.3.1",
         "ethers": "^5.7.2",
         "node-fetch": "^3.3.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dapplets/dapplets-cli.git"
+    },
+    "homepage": "https://github.com/dapplets/dapplets-cli#readme",
+    "bugs": {
+        "url": "https://github.com/dapplets/dapplets-cli/issues"
     }
 }
