@@ -29,6 +29,7 @@ program
     )
     .argument('<module-name>', 'Module name to deploy')
     .action(async (moduleName, options) => {
+        process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
         const { ethPrivateKey, targetRegistry, ipfsGatewayUrl, ipfs, moduleBranch } = program.opts()
         const { devServerUrl } = options
         if (!ethPrivateKey) return console.error('Ethereum private key must be specified!') // ToDo: check!
