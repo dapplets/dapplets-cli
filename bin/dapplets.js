@@ -57,6 +57,7 @@ program
                 'IPFS URL:',
                 new URL('/ipfs/' + deployedModuleInfo.scriptUrl.split('//')[1], ipfsGatewayUrl).href
             )
+        process.env['DEPLOY_SUCCESS'] = 'true'
     })
 
 program.parse(process.argv)
