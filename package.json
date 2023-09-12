@@ -1,6 +1,6 @@
 {
     "name": "@dapplets/cli",
-    "version": "0.2.7",
+    "version": "0.2.8",
     "description": "Dapplets CLI utility.",
     "bin": {
         "dapplets": "./bin/dapplets.js"

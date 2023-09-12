@@ -35,7 +35,23 @@ const deployModule = async (
             { url: devServerUrl, isDev: true, isEnabled: true },
             ethPrivateKey
         )
-        const mi = await devRegistry.getModuleInfoByName(moduleName)
+        let mi: ModuleInfo = null
+        let attemptsNumber = 10
+        while (attemptsNumber) {
+            try {
+                mi = await devRegistry.getModuleInfoByName(moduleName)
+                break
+            } catch (err) {
+                if (--attemptsNumber) {
+                    console.log(
+                        'The development server is not running. Attempts left: ' + attemptsNumber
+                    )
+                    await new Promise<void>((res) => setTimeout(() => res(), 3000))
+                } else {
+                    throw err
+                }
+            }
+        }
         if (!mi) {
             throw new Error(
                 'The selected developer server does not have a module with that name. Check if the developer server has started and if its name is correct.'

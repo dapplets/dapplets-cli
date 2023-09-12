@@ -174,7 +174,7 @@ export class DevRegistry implements Registry {
         } catch (err) {
             this.isAvailable = false
             this.error = err.message
-            console.error(err)
+            throw new Error(this.error)
         }
     }
 
