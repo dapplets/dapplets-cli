@@ -27,16 +27,26 @@ program
     .addOption(
         new Option('-d, --dev-server-url <url>', 'Developer server URL').env('DEV_SERVER_URL')
     )
-    .argument('<module-name>', 'Module name to deploy')
+    .addOption(
+        new Option('-n, --module-name [name]', 'The name of the module to be deployed').env(
+            'MODULE_NAME'
+        )
+    )
+    .argument('[module-name]', 'The name of the module to be deployed')
     .action(async (moduleName, options) => {
         process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+
+        const name = moduleName ?? options.moduleName
+        if (!name) return console.error('You must specify the name of the module to be deployed!')
+
         const { ethPrivateKey, targetRegistry, ipfsGatewayUrl, ipfs, moduleBranch } = program.opts()
         const { devServerUrl } = options
-        if (!ethPrivateKey) return console.error('Ethereum private key must be specified!') // ToDo: check!
+        if (!ethPrivateKey) return console.error('Ethereum private key must be specified!')
         if (!devServerUrl) return console.error('Developer server URL must be specified!')
         if (!targetRegistry) return console.error('Target registry must be specified!')
+
         const deployedModuleInfo = await deployModule(
-            moduleName,
+            name,
             ethPrivateKey,
             devServerUrl,
             targetRegistry,
@@ -45,7 +55,7 @@ program
             moduleBranch
         )
         console.log()
-        console.log('Module "' + moduleName + '" published successfully!')
+        console.log('Module "' + name + '" published successfully!')
         console.log('Current version:', deployedModuleInfo.version)
         console.log('Registry:', targetRegistry)
         console.log('Publisher:', deployedModuleInfo.sender)
